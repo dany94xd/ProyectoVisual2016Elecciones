@@ -1,5 +1,4 @@
 ﻿Public Class Votante
-
     Private _residencia As String
     Public Property Residencia() As String
         Get
@@ -19,7 +18,4 @@
             _estadodevoto = value
         End Set
     End Property
-
-
-
 End Class
