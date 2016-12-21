@@ -100,6 +100,8 @@
         Console.WriteLine("{0}. Salir ", LGOUT)
     End Sub
 
+
+
     Public Sub Menucandidato()
         Console.WriteLine("{0}. Login ", LGUSER)
         Console.WriteLine("{0}. Regresar ", LGATRAS)
