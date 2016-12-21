@@ -4,7 +4,7 @@
         Console.WriteLine("PROYECTO INICIALIZADO")
 
         Dim sistema As Sistema = New Sistema
-        sistema.Menu_Principal()
+        'sistema.Menu_Principal()
         sistema.MenuUSER()
 
 

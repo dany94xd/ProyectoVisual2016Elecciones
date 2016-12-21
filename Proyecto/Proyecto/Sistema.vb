@@ -3,8 +3,8 @@
     Const LOGVOTANTE As Byte = 1
     Const LOGADMIN As Byte = 2
     Const LOGCANDI As Byte = 3
-    Const atras As Byte = 4
-    Const OUT As Byte = 5
+    'Const atras As Byte = 4
+    Const OUT As Byte = 4
     Const LGUSER As Byte = 1
     Const LGATRAS As Byte = 2
     Const LGOUT As Byte = 3
@@ -56,14 +56,14 @@
 
                     Console.WriteLine("3.- Login Candidato")
 
-                Case atras
+                    'Case atras
 
-                    Console.WriteLine("4.- Regresar")
-                    Menu_Principal()
+                    '    Console.WriteLine("4.- Regresar")
+                    '    Menu_Principal()
 
                 Case OUT
 
-                    Console.WriteLine("5.- Salir")
+                    Console.WriteLine("4.- Salir")
                 Case Else
                     Console.WriteLine("opcion invalida:{0}", op)
 
@@ -80,7 +80,7 @@
         Console.WriteLine("{0}. Login votante ", LOGVOTANTE)
         Console.WriteLine("{0}. Login administrador ", LOGADMIN)
         Console.WriteLine("{0}. Login Candidato ", LOGCANDI)
-        Console.WriteLine("{0}. Regresar ", atras)
+        'Console.WriteLine("{0}. Regresar ", atras)
         Console.WriteLine("{0}. Salir ", OUT)
 
 
@@ -120,6 +120,8 @@
 
         Loop Until LGOUT
     End Sub
+
+
 
 
 

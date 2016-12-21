@@ -60,4 +60,36 @@
         End Set
     End Property
 
+    Private _user As String
+    Public Property User() As String
+        Get
+            Return _user
+        End Get
+        Set(ByVal value As String)
+            _user = value
+        End Set
+    End Property
+
+    Private _paswword As String
+    Public Property Paswword() As String
+        Get
+            Return _paswword
+        End Get
+        Set(ByVal value As String)
+            _paswword = value
+        End Set
+    End Property
+
+    Public Sub New()
+
+    End Sub
+
+    Public Sub New(user As String, paswword As String, nombre As String)
+        Me._user = user
+        Me._paswword = paswword
+        Me._nombre = nombre
+
+    End Sub
+
+
 End Class
