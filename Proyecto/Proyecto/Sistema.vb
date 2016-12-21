@@ -52,10 +52,11 @@
 
                 Case LOGADMIN
                     Console.WriteLine("2.- Login Administrador")
+                    Menuadministrador()
                 Case LOGCANDI
 
                     Console.WriteLine("3.- Login Candidato")
-
+                    Menucandidato()
                     'Case atras
 
                     '    Console.WriteLine("4.- Regresar")
@@ -92,6 +93,19 @@
         Console.WriteLine("{0}. Regresar ", LGATRAS)
         Console.WriteLine("{0}. Salir ", LGOUT)
     End Sub
+
+    Public Sub Menuadministrador()
+        Console.WriteLine("{0}. Login ", LGUSER)
+        Console.WriteLine("{0}. Regresar ", LGATRAS)
+        Console.WriteLine("{0}. Salir ", LGOUT)
+    End Sub
+
+    Public Sub Menucandidato()
+        Console.WriteLine("{0}. Login ", LGUSER)
+        Console.WriteLine("{0}. Regresar ", LGATRAS)
+        Console.WriteLine("{0}. Salir ", LGOUT)
+    End Sub
+
 
     Sub ManejarLogin()
         Dim opcion As String = ""
