@@ -1,15 +1,5 @@
 ﻿Public Class Persona
 
-    Private _id As Integer
-    Public Property ID() As Integer
-        Get
-            Return _id
-        End Get
-        Set(ByVal value As Integer)
-            _id = value
-        End Set
-    End Property
-
     Private _cedula As String
     Public Property Cedula() As String
         Get
@@ -40,56 +30,39 @@
         End Set
     End Property
 
-    Private _edad As Char
-    Public Property Edad() As Char
+    Private _sufrago As Boolean
+    Public Property Sufrago() As String
         Get
-            Return _edad
+            Return _sufrago
         End Get
-        Set(ByVal value As Char)
-            _edad = value
+        Set(ByVal value As String)
+            _sufrago = value
         End Set
     End Property
 
-    Private _nacionalidad As String
-    Public Property Nacionalidad() As String
-        Get
-            Return _nacionalidad
-        End Get
-        Set(ByVal value As String)
-            _nacionalidad = value
-        End Set
-    End Property
-
-    Private _user As String
-    Public Property User() As String
-        Get
-            Return _user
-        End Get
-        Set(ByVal value As String)
-            _user = value
-        End Set
-    End Property
-
-    Private _paswword As String
-    Public Property Paswword() As String
-        Get
-            Return _paswword
-        End Get
-        Set(ByVal value As String)
-            _paswword = value
-        End Set
-    End Property
 
     Public Sub New()
+        Me.Cedula = ""
+        Me.Nombre = ""
+        Me.Apellido = ""
+        Me.Sufrago = False
 
     End Sub
 
-    Public Sub New(user As String, paswword As String, nombre As String)
-        Me._user = user
-        Me._paswword = paswword
-        Me._nombre = nombre
+
+    Public Sub New(cedula As String)
+
+        Me.Cedula = cedula
+        Me.Nombre = ""
+        Me.Apellido = ""
+        Me.Sufrago = False
+
+
 
     End Sub
 
+    Public Sub mostrar()
+        Console.WriteLine(Me.Cedula & vbTab & Me.Nombre & vbTab & Me.Apellido & vbTab & Me.Sufrago)
+    End Sub
 
 End Class
