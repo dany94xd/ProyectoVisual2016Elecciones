@@ -88,6 +88,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="PartidoPolitico.vb" />
     <Compile Include="Persona.vb" />
     <Compile Include="Logeo.vb" />
     <Compile Include="Votante.vb" />
