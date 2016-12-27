@@ -1,33 +1,42 @@
 ﻿Public Class Candidato
-    Private _nombrepartidopertenece As String
-    Public Property NombrePartidoPertenece() As String
-        Get
-            Return _nombrepartidopertenece
-        End Get
-        Set(ByVal value As String)
-            _nombrepartidopertenece = value
-        End Set
-    End Property
 
-    Private _cargo As String
-    Public Property Cargo() As String
-        Get
-            Return _cargo
-        End Get
-        Set(ByVal value As String)
-            _cargo = value
-        End Set
-    End Property
+    Inherits Persona
 
 
-    Private _numerovotos As Integer
-    Public Property NumeroVotos() As Integer
+    Private _id As Integer
+    Public Property ID() As Integer
         Get
-            Return _numerovotos
+            Return _id
         End Get
         Set(ByVal value As Integer)
-            _numerovotos = value
+            _id = value
         End Set
     End Property
+
+
+    'dignidad cargo por el cual postula: Presidente,asambleista,consejal'
+    Private _dignidad As String
+    Public Property Dignidad() As String
+        Get
+            Return _dignidad
+        End Get
+        Set(ByVal value As String)
+            _dignidad = value
+        End Set
+    End Property
+
+    Private _numerodevotos As Integer
+    Public Property NumerodeVotos() As Integer
+        Get
+            Return _numerodevotos
+        End Get
+        Set(ByVal value As Integer)
+            _numerodevotos = value
+        End Set
+    End Property
+
+
+
+
 
 End Class

@@ -1,5 +1,5 @@
 ﻿Public Class Administrador
-
+    Inherits Persona
 
     Private _usuario As String
     Public Property Usuario() As String
@@ -21,15 +21,7 @@
         End Set
     End Property
 
-    Private _cargo As String
-    Public Property Cargo() As String
-        Get
-            Return _Cargo
-        End Get
-        Set(ByVal value As String)
-            _Cargo = value
-        End Set
-    End Property
+   
 
 
 
