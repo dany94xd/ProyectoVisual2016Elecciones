@@ -3,7 +3,7 @@
     Sub Main()
         Console.WriteLine("PROYECTO INICIALIZADO")
 
-        Dim sistema As Sistema = New Sistema
+        Dim sistema As Logeo = New Logeo
         'sistema.Menu_Principal()
         sistema.MenuUSER()
 
