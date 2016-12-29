@@ -141,7 +141,7 @@ Public Class logeo
 
             Case LGUSER
                 Console.WriteLine("1.- Bienvendido Candidato")
-                ManejarLoginUsario()
+                ManejarLoginCandidato()
 
             Case LGATRAS
                 Console.WriteLine("2.- Bienvenido Administrador")
@@ -199,8 +199,6 @@ Public Class logeo
 
     Public Sub ManejarVotante()
         Dim cedula As String = ""
-
-
 
         Dim bandera As Boolean = True
         Dim patch As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
