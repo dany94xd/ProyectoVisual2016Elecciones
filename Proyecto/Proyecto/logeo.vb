@@ -314,6 +314,28 @@ Public Class logeo
     End Sub
 
 
+    Public Sub NuevoCandidato()
+
+        Dim path As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("candidato")
+        For Each candida As XmlNode In lista
+            For i = 1 To 3
+                candida.AppendChild(CrearCandidato(xmldoc))
+
+            Next
+            xmldoc.Save(path)
+        Next
+
+
+    End Sub
+
+
+
+
+
+
     Function CrearCandidato(xmldoc As XmlDocument)
         Dim candi As XmlElement = xmldoc.CreateElement("candidato")
         candi.SetAttribute("id", "7")
