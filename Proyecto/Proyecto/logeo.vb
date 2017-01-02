@@ -340,4 +340,29 @@ Public Class logeo
 
         Return candi
     End Function
+
+    Public Sub AgregarDignidad()
+
+        Dim path As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("candidato")
+        Dim digni As XmlNode
+        For Each candi As XmlNode In lista
+            'Console.WriteLine(candi.Name & candi.Attributes(0).Value)
+            For Each hijo As XmlNode In candi.ChildNodes
+                If hijo.Name = "cargo" Then
+                    digni = hijo
+                End If
+            Next
+            If digni Is Nothing Then
+                digni = xmldoc.CreateElement("cargo")
+                candi.AppendChild(digni)
+            End If
+            digni.InnerText = "primer vocal"
+            digni = Nothing
+        Next
+        xmldoc.Save(path)
+    End Sub
+
 End Class
