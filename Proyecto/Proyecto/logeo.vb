@@ -285,7 +285,7 @@ Public Class logeo
         xmlDoc.Load(patch)
         Dim admins As XmlNodeList = xmlDoc.GetElementsByTagName("administrador")
         For Each admin As XmlNode In admins
-            'Console.WriteLine(admin.Name)
+            Console.WriteLine(admin.Name)
             Do While bandera
                 Console.Write(" Ingrese USUARIO : ")
                 user = Console.ReadLine()
@@ -312,4 +312,32 @@ Public Class logeo
 
 
     End Sub
+
+
+    Function CrearCandidato(xmldoc As XmlDocument)
+        Dim candi As XmlElement = xmldoc.CreateElement("candidato")
+        candi.SetAttribute("id", "7")
+        candi.SetAttribute("user", "new")
+        candi.SetAttribute("pass", "123")
+        Dim nombre As XmlElement = xmldoc.CreateElement("nombre")
+        nombre.InnerText = "nuevapersona"
+        candi.AppendChild(nombre)
+
+        Dim apellido As XmlElement = xmldoc.CreateElement("apellido")
+        apellido.InnerText = "apellidonuevo"
+        candi.AppendChild(apellido)
+
+
+        Dim car As XmlElement = xmldoc.CreateElement("cargo")
+        car.InnerText = "consejal"
+        candi.AppendChild(car)
+
+
+        Dim voto As XmlElement = xmldoc.CreateElement("voto")
+        voto.InnerText = "0"
+        candi.AppendChild(voto)
+
+
+        Return candi
+    End Function
 End Class
