@@ -19,8 +19,10 @@ Public Class logeo
     '***********************'
     Const ADDIGNIDAD As Byte = 1
     Const ADCAND As Byte = 2
-    Const ADRESUL As Byte = 3
-    Const ADEXIT As Byte = 4
+    Const ADPATRON As Byte = 3
+    Const ADRESUL As Byte = 4
+    Const ADEXIT As Byte = 5
+
 
     '**********************'
     Const VPRESI As Byte = 1
@@ -89,6 +91,7 @@ Public Class logeo
     Public Sub Menuadmin()
         Console.WriteLine("{0}. Agregar dignidad ", ADDIGNIDAD)
         Console.WriteLine("{0}. Agregar candidato ", ADCAND)
+        Console.WriteLine("{0}. ver patron electoral ", ADPATRON)
         Console.WriteLine("{0}. Mostrar Resultados ", ADRESUL)
         Console.WriteLine("{0}. Salir", ADEXIT)
         Dim opcion As String = ""
@@ -104,19 +107,25 @@ Public Class logeo
 
             Case ADDIGNIDAD
                 Console.WriteLine("1.- Añadir dignidad")
-
+                AgregarDignidad()
 
             Case ADCAND
                 Console.WriteLine("2.- Añadir candidato")
+                NuevoCandidato()
+
+            Case ADPATRON
+
+                Console.WriteLine("4.- consultar padron de votantes")
+                Dim mesa As Mesa = New Mesa("0001")
+                mesa.cargarlistadevotantes()
+                mesa.listarvotadores()
 
 
             Case ADRESUL
 
-                Console.WriteLine("3.- consultar resultados")
-
-
+                Console.WriteLine("4.- consultar resultados")
             Case ADEXIT
-                Console.WriteLine("4.- salir")
+                Console.WriteLine("5.- salir")
                 'MenuUsario()
             Case Else
                 Console.WriteLine("opcion invalida:{0}", op)
