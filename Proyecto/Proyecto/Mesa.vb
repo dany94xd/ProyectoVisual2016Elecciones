@@ -2,7 +2,6 @@
 
 Public Class Mesa
 
-
     Private _numero As String
     Public Property Numero() As String
         Get
@@ -45,7 +44,7 @@ Public Class Mesa
     End Sub
 
     Public Sub cargarlistadevotantes()
-        Dim path As String = ""
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
         Dim xmldoc As New XmlDocument()
         xmldoc.Load(path)
         Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("votante")
@@ -67,6 +66,7 @@ Public Class Mesa
         Next
     End Sub
 
+
     Public Sub listarvotadores()
         Console.WriteLine("")
         For Each persona As Persona In ListaVotantes
@@ -74,5 +74,28 @@ Public Class Mesa
         Next
     End Sub
 
+
+    Public Function verificarVotante() As Persona
+        'Dim cki As ConsoleKeyInfo
+        Dim cedula As String = ""
+        'Dim car As Integer = 0
+        Console.WriteLine("BIENVENIDO... INGRESE SU NUMERO DE CEDULA")
+        cedula = Console.ReadLine()
+        Console.WriteLine()
+        Console.WriteLine("CONSULTANDO DATOS .....")
+        Console.ReadLine()
+
+        Dim vot As Persona = New Persona()
+        For Each votante As Persona In Me.ListaVotantes
+            'Console.Write(votante.Cedula)
+
+            'votante.mostrar()
+
+            If votante.Cedula = cedula Then
+                vot = votante
+            End If
+        Next
+        Return vot
+    End Function
 
 End Class
