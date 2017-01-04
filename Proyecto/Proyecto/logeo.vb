@@ -1,6 +1,7 @@
 ﻿Imports System.Xml
 
-Public Class logeo
+Public Class Logeo
+
 
     Private persona As Persona
     Const LOGVOTANTE As Byte = 1
@@ -16,13 +17,14 @@ Public Class logeo
     '**********************'
     Const CANUS As Byte = 1
     Const CANEXIT As Byte = 2
-    '***********************'
+
+    '**********************'
+
     Const ADDIGNIDAD As Byte = 1
     Const ADCAND As Byte = 2
     Const ADPATRON As Byte = 3
     Const ADRESUL As Byte = 4
     Const ADEXIT As Byte = 5
-
 
     '**********************'
     Const VPRESI As Byte = 1
@@ -30,8 +32,11 @@ Public Class logeo
     Const VCON As Byte = 3
     Const VEXIT As Byte = 4
 
-    Public Sub MenuUSER()
 
+    Dim mesa As Mesa = New Mesa("0001")
+
+
+    Public Sub MenuUSER()
 
         Dim opcion As String = ""
         Dim op As Byte
@@ -71,7 +76,6 @@ Public Class logeo
         Console.WriteLine("gracias por su colaboracion")
         Console.ReadLine()
 
-
     End Sub
 
     Public Sub MenuUsario()
@@ -87,6 +91,42 @@ Public Class logeo
         Console.WriteLine("{0}. Salir ", CANEXIT)
     End Sub
 
+
+    Public Sub MenuCand()
+        Console.WriteLine("{0}. CANDIDATO ", LGUSER)
+        Console.WriteLine("{0}. ADMINISTRADOR ", LGATRAS)
+        Console.WriteLine("{0}. Regresar ", LGOUT)
+        Dim opcion As String = ""
+        Dim op As Byte
+        opcion = Console.ReadLine()
+        op = CByte(opcion)
+
+
+        Console.WriteLine("usted a ingresado{0}", opcion)
+        Console.ReadLine()
+
+        Select Case op
+
+            Case LGUSER
+                Console.WriteLine("1.- Bienvendido Candidato")
+                ManejarLoginCandidato()
+
+            Case LGATRAS
+                Console.WriteLine("2.- Bienvenido Administrador")
+                ManejarLoginAdmin()
+
+            Case OUT
+
+                Console.WriteLine("3.- Regresar")
+                MenuUsario()
+            Case Else
+                Console.WriteLine("opcion invalida:{0}", op)
+
+        End Select
+
+
+
+    End Sub
 
     Public Sub Menuadmin()
         Console.WriteLine("{0}. Agregar dignidad ", ADDIGNIDAD)
@@ -116,7 +156,7 @@ Public Class logeo
             Case ADPATRON
 
                 Console.WriteLine("4.- consultar padron de votantes")
-                Dim mesa As Mesa = New Mesa("0001")
+                'Dim mesa As Mesa = New Mesa("0001")
                 mesa.cargarlistadevotantes()
                 mesa.listarvotadores()
 
@@ -133,42 +173,10 @@ Public Class logeo
         End Select
     End Sub
 
-    Public Sub MenuCand()
-        Console.WriteLine("{0}. CANDIDATO ", LGUSER)
-        Console.WriteLine("{0}. ADMINISTRADOR ", LGATRAS)
-        Console.WriteLine("{0}. Regresar ", LGOUT)
-        Dim opcion As String = ""
-        Dim op As Byte
-        opcion = Console.ReadLine()
-        op = CByte(opcion)
-
-
-        Console.WriteLine("usted a ingresado{0}", opcion)
-        Console.ReadLine()
-
-        Select Case op
-
-            Case LGUSER
-                Console.WriteLine("1.- Bienvendido Candidato")
-                ManejarLoginCandidato()
-
-            Case LGATRAS
-                Console.WriteLine("2.- Bienvenido Administrador")
-                MenuCand()
-
-            Case OUT
-
-                Console.WriteLine("3.- Regresar")
-                MenuUsario()
-            Case Else
-                Console.WriteLine("opcion invalida:{0}", op)
-
-        End Select
-
-
-    End Sub
 
     Public Sub Menuvotante()
+
+
         Console.WriteLine("{0}. Sufragar Presidente ", VPRESI)
         Console.WriteLine("{0}. Sufragar asambleista ", VASAN)
         Console.WriteLine("{0}. sufragar consejal ", VCON)
@@ -186,17 +194,16 @@ Public Class logeo
 
             Case VPRESI
                 Console.WriteLine("1.- elegir presidente")
-
-
+                mesa.cargarlistadevotantes()
+                mesa.Votacionpresidente()
             Case VASAN
                 Console.WriteLine("2.- elegir asambleista")
-
-
+                mesa.cargarlistadevotantes()
+                mesa.Votoasambleista()
             Case VCON
-
                 Console.WriteLine("3.- elegir consejal")
-
-
+                mesa.cargarlistadevotantes()
+                mesa.Votoconsejal()
             Case VEXIT
                 Console.WriteLine("4.- salir")
                 'MenuUsario()
@@ -208,16 +215,15 @@ Public Class logeo
 
     Public Sub ManejarVotante()
         Dim cedula As String = ""
-
         Dim bandera As Boolean = True
-        Dim patch As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim patch As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
         'CARGA DESDE USUARIOS.XML
         Dim xmlDoc As New XmlDocument()
         xmlDoc.Load(patch)
         Dim lista_mesas As XmlNodeList = xmlDoc.GetElementsByTagName("padron")
         For Each padron As XmlNode In lista_mesas
-            For Each Votante As XmlNode In padron.ChildNodes
-                Do While bandera
+            Do While bandera
+                For Each Votante As XmlNode In padron.ChildNodes
                     Console.Write(" Ingrese su numero de cedula : ")
                     cedula = Console.ReadLine()
                     Try
@@ -227,75 +233,36 @@ Public Class logeo
                             Console.WriteLine("bienvendio:" & Votante.InnerText)
                             bandera = False
                             Menuvotante()
-
-
                         Else
                             Console.WriteLine("Datos no validos")
 
                         End If
                     Catch ex As Exception
-                        Console.WriteLine("Datos no validos")
+                        'Console.WriteLine("Datos no validos")
                     End Try
-                Loop
-            Next
+
+                Next
+            Loop
         Next
 
     End Sub
 
     Sub ManejarLoginCandidato()
 
-        Dim user As String = ""
-        Dim pass As String = ""
 
-
-        Dim bandera As Boolean = True
-        Dim patch As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
-        'CARGA DESDE USUARIOS.XML
-        Dim xmlDoc As New XmlDocument()
-        xmlDoc.Load(patch)
-        Dim lista_partidos As XmlNodeList = xmlDoc.GetElementsByTagName("partido")
-        For Each partido As XmlNode In lista_partidos
-            'el .name imprime el nombre de la etiqueta y el .attributes el atributo de la etiqueta segun la posicion 0 o 1 '
-            'Console.WriteLine(partido.Name & partido.Attributes(0).Value)
-            For Each candidato As XmlNode In partido.ChildNodes
-                'Console.WriteLine(candidato.Name & candidato.Attributes(0).Value)
-                Do While bandera
-                    Console.Write(" Ingrese USUARIO : ")
-                    user = Console.ReadLine()
-                    Console.Write(" Ingrese PASSWORD: ")
-                    pass = Console.ReadLine()
-                    Try
-                        If user = candidato.Attributes(1).Value And pass = candidato.Attributes(2).Value Then
-                            Console.WriteLine("Login correcto")
-                            MsgBox("login correcto")
-                            bandera = False
-                            opadmin()
-                        Else
-                            Console.WriteLine("Datos no validos")
-
-                        End If
-                    Catch ex As Exception
-                        Console.WriteLine("Datos no validos")
-                    End Try
-                Loop
-            Next
-        Next
-
-        'Console.WriteLine("Login correcto")
     End Sub
 
     Sub ManejarLoginAdmin()
         Dim user As String = ""
         Dim pass As String = ""
         Dim bandera As Boolean = True
-        Dim patch As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim patch As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
         'CARGA DESDE USUARIOS.XML
         Dim xmlDoc As New XmlDocument()
         xmlDoc.Load(patch)
-        Dim admins As XmlNodeList = xmlDoc.GetElementsByTagName("administrador")
-        For Each admin As XmlNode In admins
-            Console.WriteLine(admin.Name)
-            Do While bandera
+        Do While bandera
+            Dim admins As XmlNodeList = xmlDoc.GetElementsByTagName("administrador")
+            For Each admin As XmlNode In admins
                 Console.Write(" Ingrese USUARIO : ")
                 user = Console.ReadLine()
                 Console.Write(" Ingrese PASSWORD: ")
@@ -308,13 +275,12 @@ Public Class logeo
                         Menuadmin()
                     Else
                         Console.WriteLine("Datos no validos")
-
                     End If
                 Catch ex As Exception
-                    Console.WriteLine("Datos no validos")
+                    'Console.WriteLine("Datos no validos")
                 End Try
-            Loop
-        Next
+            Next
+        Loop
 
 
 
@@ -323,9 +289,40 @@ Public Class logeo
     End Sub
 
 
+    Public Function Cargarcandidatos() As ArrayList
+        Dim part_politicos As ArrayList = New ArrayList()
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim lista_partido As XmlNodeList = xmldoc.GetElementsByTagName("partido")
+        For Each partido As XmlNode In lista_partido
+            Dim part As PartidoPolitico = New PartidoPolitico(partido.Attributes("id").Value, partido.Attributes("nombre").Value)
+            For Each Candidato As XmlNode In partido
+                Dim candi As Candidato = New Candidato(Candidato.Attributes("id").Value, Candidato.Attributes("cargo").Value)
+                For Each nodo As XmlNode In Candidato.ChildNodes
+                    Select Case nodo.Name
+                        Case "nombre"
+                            candi.Nombre = nodo.InnerText
+                        Case "apellido"
+                            candi.Apellido = nodo.InnerText
+                        Case "votos"
+                            candi.Sufrago = CInt(nodo.InnerText)
+                    End Select
+                Next
+                part.AgregarCandidato(candi)
+            Next
+            part_politicos.Add(part)
+        Next
+
+        Return part_politicos
+
+
+    End Function
+
+
     Public Sub NuevoCandidato()
 
-        Dim path As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
         Dim xmldoc As New XmlDocument()
         xmldoc.Load(path)
         Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("candidato")
@@ -339,11 +336,6 @@ Public Class logeo
 
 
     End Sub
-
-
-
-
-
 
     Function CrearCandidato(xmldoc As XmlDocument)
         Dim candi As XmlElement = xmldoc.CreateElement("candidato")
@@ -374,7 +366,7 @@ Public Class logeo
 
     Public Sub AgregarDignidad()
 
-        Dim path As String = "C:\Users\Usuario\Documents\Visual Studio 2013\Projects\SistemaVotaciones\votaciones.xml"
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
         Dim xmldoc As New XmlDocument()
         xmldoc.Load(path)
         Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("candidato")
@@ -395,5 +387,21 @@ Public Class logeo
         Next
         xmldoc.Save(path)
     End Sub
+
+
+
+    Public Sub ModificarDignidad()
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("candidato")
+        For Each candi As XmlNode In lista
+            Dim c As XmlElement = candi
+            c.SetAttribute("cargo", "ministrodeldeporte")
+        Next
+        xmldoc.Save(path)
+
+    End Sub
+
 
 End Class
