@@ -241,4 +241,47 @@ Public Class Mesa
 
 
     End Sub
+
+    Public Function CargarCandidatos() As ArrayList
+        Dim part As ArrayList = New ArrayList()
+        Dim path As String = "H:\SistemaVotaciones\SistemaVotaciones\votaciones.xml"
+        Dim xmldoc As New XmlDocument()
+        xmldoc.Load(path)
+        Dim lista As XmlNodeList = xmldoc.GetElementsByTagName("partido")
+        For Each partido As XmlNode In lista
+
+            Dim p As PartidoPolitico = New PartidoPolitico(partido.Attributes("id").Value, partido.Attributes("nombre").Value)
+
+            For Each candi As XmlNode In partido
+
+                Dim cand As Candidato = New Candidato(candi.Attributes("id").Value, candi.Attributes("cargo").Value)
+                'Console.WriteLine(candi.Attributes("id").Value, candi.Attributes("user").Value, candi.Attributes("cargo"))
+                'cand.mostradatosCandi()
+                For Each nodo As XmlNode In candi.ChildNodes
+                    Select Case nodo.Name
+                        Case "nombre"
+                            cand.Nombre = nodo.InnerText
+                        Case "apellido"
+                            cand.Apellido = nodo.InnerText
+                        Case "votos"
+                            cand.Sufrago = CInt(nodo.InnerText)
+
+                        Case Else
+                    End Select
+
+                Next
+                p.AgregarCandidato(cand)
+            Next
+            part.Add(p)
+
+        Next
+        Return part
+
+    End Function
+
+
+    Public Sub votanteconfirmado()
+
+    End Sub
+
 End Class
