@@ -44,6 +44,7 @@
 
 
 
+
     Public Sub mostradatosCandi()
         Console.WriteLine(Me.Nombre & vbTab & Me.Apellido & vbTab & Me.Dignidad)
 
