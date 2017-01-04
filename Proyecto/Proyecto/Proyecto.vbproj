@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="PartidoPolitico.vb" />
     <Compile Include="Persona.vb" />
+    <Compile Include="Recintoelectoral.vb" />
     <Compile Include="Votante.vb" />
     <Compile Include="Voto.vb" />
   </ItemGroup>
