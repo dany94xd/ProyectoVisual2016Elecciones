@@ -1,6 +1,6 @@
 ﻿Public Class Candidato
-
     Inherits Persona
+
 
 
     Private _id As Integer
@@ -36,7 +36,17 @@
     End Property
 
 
+    Public Sub New(id As String, cargo As String)
+        Me.ID = id
+        Me.Dignidad = cargo
+
+    End Sub
 
 
 
+    Public Sub mostradatosCandi()
+        Console.WriteLine(Me.Nombre & vbTab & Me.Apellido & vbTab & Me.Dignidad)
+
+    End Sub
 End Class
+
