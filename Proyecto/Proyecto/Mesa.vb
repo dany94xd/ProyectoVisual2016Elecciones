@@ -193,4 +193,52 @@ Public Class Mesa
 
         End If
     End Sub
+
+
+    Public Sub Votoconsejal()
+        Dim votante As Persona = verificarVotante()
+        If votante.Nombre = "" Then
+            Console.WriteLine("NO SE ENCUENTRA EN LA LISTA")
+            Exit Sub
+        Else
+            votante.mostrar()
+        End If
+        If votante.Sufrago Then
+            Console.WriteLine("Usted ya a sufragado gracias por su colaboracion")
+            Console.ReadLine()
+            Exit Sub
+        Else
+            Dim partidos As ArrayList = CargarCandidatos()
+            Dim tipo_cargo As Byte = 1
+            Dim candidatos_ultimaver As ArrayList = New ArrayList()
+            Dim candi_conse As ArrayList = New ArrayList()
+            For Each part As PartidoPolitico In partidos
+                For Each candi As Candidato In part.Candidatos
+                    If candi.Dignidad = "Consejal" Then
+                        candidatos_ultimaver.Add(candi)
+                    End If
+                Next
+            Next
+            Dim opc As Byte = 0
+            Do While opc <= 0 Or opc > candidatos_ultimaver.Count
+                Console.WriteLine("Candidato a: ----------")
+                For Each candi As Candidato In candidatos_ultimaver
+                    candi.mostradatosCandi()
+                    Console.WriteLine()
+                Next
+                Try
+                    Console.Write("Escriba la opcion que desee:")
+                    opc = Console.ReadLine()
+                Catch ex As Exception
+                    Console.WriteLine(vbNewLine & "ingrese solo numeros")
+                End Try
+            Loop
+            Dim ca As Candidato = candidatos_ultimaver.Item(opc - 1)
+            Console.WriteLine("UD ha elegio")
+            ca.mostradatosCandi()
+
+        End If
+
+
+    End Sub
 End Class
