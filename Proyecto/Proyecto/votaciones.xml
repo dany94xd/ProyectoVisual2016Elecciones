@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Personas>
+  <users>
+    <partido id="10" nombre="la 10">
+      <candidato id="1" cargo="Presidente" user="dvin" pass="12345">
+        <nombre>Daniel</nombre>
+        <apellido>Vinces</apellido>
+        <votos>0</votos>
+      </candidato>
+      <candidato id="2" cargo="Asambleista" user="pno" pass="1234">
+        <nombre>Pinocho</nombre>
+        <apellido>narizon</apellido>
+        <votos>0</votos>
+      </candidato>
+      <candidato id="3" cargo="Consejal" user="tk" pass="123456">
+        <nombre>Tiko</nombre>
+        <apellido>Tiko</apellido>
+        <votos>0</votos>
+      </candidato>
+    </partido>
+    <partido id="21" nombre="CREO">
+      <candidato id="4" cargo="Presidente" user="glaso" pass="1234567">
+        <nombre>GUILLERMO</nombre>
+        <apellido>LASSO</apellido>
+        <votos>0</votos>
+      </candidato>
+      <candidato id="5" cargo="Consejal" user="pol" pass="pol24">
+        <nombre>PAUL</nombre>
+        <apellido>OLSEN</apellido>
+        <votos>1</votos>
+      </candidato>
+      <candidato id="6" cargo="Asambleista" user="bsqa" pass="bsq123">
+        <nombre>BOB</nombre>
+        <apellido>Square</apellido>
+        <votos>3</votos>
+      </candidato>
+    </partido>
+    <administrador user="dart" pass="dart22">
+      <nombre>Arturo</nombre>
+    </administrador>
+    <Jefemesa id="1" user="jefe1" pass="1234">
+      <nombre>master</nombre>
+      <apellido>one</apellido>
+    </Jefemesa>
+    <Jefemesa id="1" user="jefe1" pass="1234">
+      <nombre>master</nombre>
+      <apellido>one</apellido>
+    </Jefemesa>
+    <Jefemesa id="1" user="jefe1" pass="1234">
+      <nombre>master</nombre>
+      <apellido>one</apellido>
+    </Jefemesa>
+  </users>
+  <mesa>
+    <padron>
+      <votante cedula="0952328284">
+        <nombre>Daniel</nombre>
+        <apellido>Vinces</apellido>
+        <sufrago>false</sufrago>
+      </votante>
+      <votante cedula="0952886437">
+        <nombre>Juan</nombre>
+        <apellido>Piguave</apellido>
+        <sufrago>false</sufrago>
+      </votante>
+    </padron>
+  </mesa>
+</Personas>
